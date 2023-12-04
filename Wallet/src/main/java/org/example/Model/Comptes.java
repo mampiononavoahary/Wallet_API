@@ -1,2 +1,4 @@
-package org.example.Model;public class Comptes {
+package org.example.Model;
+
+public class Comptes {
 }
