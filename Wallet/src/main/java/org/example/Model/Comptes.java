@@ -5,14 +5,16 @@ import java.util.Objects;
 
 public class Comptes {
     private   int id_compte;
+    private int id_devise;
     private String nom_compte;
     private Float solde;
     private String type_compte;
     private Timestamp date_ouverture ;
     private String proprietaire;
 
-    public Comptes(int id_compte, String nom_compte, Float solde, String type_compte, Timestamp date_ouverture, String proprietaire) {
+    public Comptes(int id_compte,int id_devise, String nom_compte, Float solde, String type_compte, Timestamp date_ouverture, String proprietaire) {
         this.id_compte = id_compte;
+        this.id_devise=id_devise;
         this.nom_compte = nom_compte;
         this.solde = solde;
         this.type_compte = type_compte;
@@ -38,6 +40,14 @@ public class Comptes {
 
     public Float getSolde() {
         return solde;
+    }
+
+    public int getId_devise() {
+        return id_devise;
+    }
+
+    public void setId_devise(int id_devise) {
+        this.id_devise = id_devise;
     }
 
     public void setSolde(Float solde) {
@@ -85,6 +95,7 @@ public class Comptes {
     public String toString() {
         return "Comptes{" +
                 "id_compte=" + id_compte +
+                ", id_devise ="+ id_devise+
                 ", nom_compte='" + nom_compte + '\'' +
                 ", solde=" + solde +
                 ", type_compte='" + type_compte + '\'' +

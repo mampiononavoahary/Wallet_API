@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransactionsCrudOperations implements CrudOperation{
+public class TransactionsCrudOperations implements CrudOperation<Transactions>{
 
     ConnectDatabase connectDatabase = new ConnectDatabase();
     Connection connection = connectDatabase.CreateConnection();
@@ -43,17 +43,18 @@ public class TransactionsCrudOperations implements CrudOperation{
     }
 
     @Override
+    public Transactions save(Transactions toSave) {
+
+    }
+
+    @Override
+    public Transactions delete(Transactions toDelete) {
+        return null;
+    }
+
+    @Override
     public List saveAll(List toSave) {
         return null;
     }
 
-    @Override
-    public Object save(Object toSave) {
-        return null;
-    }
-
-    @Override
-    public Object delete(Object toDelete) {
-        return null;
-    }
 }
