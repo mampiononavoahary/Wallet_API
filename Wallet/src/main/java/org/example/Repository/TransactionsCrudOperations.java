@@ -1,7 +1,6 @@
 package org.example.Repository;
 
 import org.example.Database.ConnectDatabase;
-import org.example.Model.Comptes;
 import org.example.Model.Transactions;
 
 import java.sql.Connection;
@@ -27,7 +26,11 @@ public class TransactionsCrudOperations implements CrudOperation{
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 array.add(new Transactions(
-
+                     resultSet.getInt("transaction_id"),
+                        resultSet.getInt("id_compte"),
+                        resultSet.getFloat("montant"),
+                        resultSet.getString("type_transaction"),
+                        resultSet.getTimestamp("date_transaction")
                 ));
             }
             for (Transactions transactions : array){

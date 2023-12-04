@@ -25,7 +25,12 @@ public class ComptesCrudOperations implements CrudOperation{
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 array.add(new Comptes(
-
+                    resultSet.getInt("id_compte"),
+                        resultSet.getString("nom_compte"),
+                        resultSet.getFloat("solde"),
+                        resultSet.getString("type_compte"),
+                        resultSet.getTimestamp("date_ouverture"),
+                        resultSet.getString("proprietire")
                 ));
             }
             for (Comptes comptes : array){
