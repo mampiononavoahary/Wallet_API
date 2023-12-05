@@ -11,9 +11,9 @@ public class ConnectDatabase {
 
 
     public ConnectDatabase(){
-        this.url = System.getenv("DATABASE_URL");
-        this.user = System.getenv("DATABASE_USER");
-        this.password = System.getenv("DATABASE_PASSWORD");
+        this.url = "jdbc:postgresql://localhost:5432/"+System.getenv("DB_URL");
+        this.user = System.getenv("DB_USER");
+        this.password = System.getenv("DB_PASSWORD");
     }
 
     public Connection CreateConnection() throws SQLException, ClassNotFoundException {

@@ -26,11 +26,12 @@ public class TransactionsCrudOperations implements CrudOperation<Transactions>{
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 array.add(new Transactions(
-                     resultSet.getInt("transaction_id"),
+                     resultSet.getInt("id_transaction"),
+                        resultSet.getInt("id_devise"),
                         resultSet.getInt("id_compte"),
                         resultSet.getFloat("montant"),
                         resultSet.getString("type_transaction"),
-                        resultSet.getTimestamp("date_transaction")
+                        resultSet.getString("date_transaction")
                 ));
             }
             for (Transactions transactions : array){
@@ -44,16 +45,17 @@ public class TransactionsCrudOperations implements CrudOperation<Transactions>{
 
     @Override
     public List<Transactions> saveAll(List<Transactions> toSave) {
-        String sql = "INSERT INTO Transactions(id_transaction, id_compte, montant, type_transaction, date_transaction) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO Transactions(id_transaction,id_devise, id_compte, montant, type_transaction, date_transaction) VALUES (?,?, ?, ?, ?, ?, ?);";
         List<Transactions> array = new ArrayList<>();
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             for (Transactions transaction : toSave) {
                 statement.setInt(1, transaction.getId_transaction());
-                statement.setInt(2, transaction.getId_compte());
-                statement.setFloat(3, transaction.getMontant());
-                statement.setString(4, transaction.getType_transaction());
-                statement.setTimestamp(5, transaction.getDate_transaction());
+                statement.setInt(2,transaction.getId_devise());
+                statement.setInt(3, transaction.getId_compte());
+                statement.setFloat(4, transaction.getMontant());
+                statement.setString(5, transaction.getType_transaction());
+                statement.setDate(6, transaction.getDate_transaction());
 
                 int rows = statement.executeUpdate();
                 if (rows > 0) {
@@ -71,20 +73,20 @@ public class TransactionsCrudOperations implements CrudOperation<Transactions>{
 
     @Override
     public Transactions save(Transactions toSave) {
-        String sql = "INSERT INTO Transaction(id_transaction, id_compte, montant, type_transaction, date_transaction, description) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO Transactions(id_transaction,id_devise, id_compte, montant, type_transaction, date_transaction, description) VALUES (?, ?, ?, ?, ?, ?);";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, toSave.getId_transaction());
-            statement.setInt(2, toSave.getId_compte());
-            statement.setFloat(3, toSave.getMontant());
-            statement.setString(4, toSave.getType_transaction());
-            statement.setTimestamp(5, toSave.getDate_transaction());
+            statement.setInt(2,toSave.getId_devise());
+            statement.setInt(3, toSave.getId_compte());
+            statement.setFloat(4, toSave.getMontant());
+            statement.setString(5, toSave.getType_transaction());
+            statement.setDate(6, toSave.getDate_transaction());
 
             int rows = statement.executeUpdate();
             if (rows > 0) {
                 System.out.println("Transaction insérée avec succès");
 
-                // Récupérer les clés générées automatiquement (si applicable)
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         toSave.setId_transaction(generatedKeys.getInt(1));

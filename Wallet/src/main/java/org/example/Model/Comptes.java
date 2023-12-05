@@ -1,6 +1,6 @@
 package org.example.Model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 public class Comptes {
@@ -9,16 +9,16 @@ public class Comptes {
     private String nom_compte;
     private Float solde;
     private String type_compte;
-    private Timestamp date_ouverture ;
+    private java.sql.Date date_ouverture ;
     private String proprietaire;
 
-    public Comptes(int id_compte,int id_devise, String nom_compte, Float solde, String type_compte, Timestamp date_ouverture, String proprietaire) {
+    public Comptes(int id_compte, int id_devise, String nom_compte, Float solde, String type_compte, String date_ouverture, String proprietaire) {
         this.id_compte = id_compte;
         this.id_devise=id_devise;
         this.nom_compte = nom_compte;
         this.solde = solde;
         this.type_compte = type_compte;
-        this.date_ouverture = date_ouverture;
+        this.date_ouverture = java.sql.Date.valueOf(date_ouverture);
         this.proprietaire = proprietaire;
     }
 
@@ -62,12 +62,12 @@ public class Comptes {
         this.type_compte = type_compte;
     }
 
-    public Timestamp getDate_ouverture() {
+    public java.sql.Date getDate_ouverture() {
         return date_ouverture;
     }
 
-    public void setDate_ouverture(Timestamp date_ouverture) {
-        this.date_ouverture = date_ouverture;
+    public void setDate_ouverture(Date date_ouverture) {
+        this.date_ouverture = (java.sql.Date) date_ouverture;
     }
 
     public String getProprietaire() {

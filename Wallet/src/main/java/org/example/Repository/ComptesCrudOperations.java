@@ -30,7 +30,7 @@ public class ComptesCrudOperations implements CrudOperation<Comptes>{
                         resultSet.getString("nom_compte"),
                         resultSet.getFloat("solde"),
                         resultSet.getString("type_compte"),
-                        resultSet.getTimestamp("date_ouverture"),
+                        resultSet.getString("date_ouverture"),
                         resultSet.getString("proprietire")
                 ));
             }
@@ -54,7 +54,7 @@ public class ComptesCrudOperations implements CrudOperation<Comptes>{
                 statement.setString(3,comptes.getNom_compte());
                 statement.setFloat(4,comptes.getSolde());
                 statement.setString(5,comptes.getType_compte());
-                statement.setTimestamp(6,comptes.getDate_ouverture());
+                statement.setDate(6,comptes.getDate_ouverture());
                 statement.setString(7, comptes.getProprietaire());
                 int rows = statement.executeUpdate();
                 if (rows>0){
@@ -78,7 +78,7 @@ public class ComptesCrudOperations implements CrudOperation<Comptes>{
                 preparedStatement.setString(2,toSave.getNom_compte());
                 preparedStatement.setFloat(3,toSave.getSolde());
                 preparedStatement.setString(4,toSave.getType_compte());
-                preparedStatement.setTimestamp(5,toSave.getDate_ouverture());
+                preparedStatement.setDate(5,toSave.getDate_ouverture());
                 preparedStatement.setString(6,toSave.getProprietaire());
 
                 preparedStatement.executeUpdate();

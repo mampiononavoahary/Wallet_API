@@ -4,15 +4,21 @@ import java.util.Objects;
 
 public class Devise {
     private int id_devise ;
-    private String nom_devise ;
-    private Topic symbole_devise;
-    public enum Topic {
+    private TopicA nom_devise ;
+    private TopicB symbole_devise;
+    public enum TopicA {
         Euros,
         Dollar,
         Ariary,
-        Other,
+        Other
     }
-    public Devise(int id_devise, String nom_devise, Topic symbole_devise) {
+    public enum TopicB{
+        Eur,
+        $,
+        MGA,
+        Other
+    }
+    public Devise(int id_devise, TopicA nom_devise, TopicB symbole_devise) {
         this.id_devise = id_devise;
         this.nom_devise = nom_devise;
         this.symbole_devise = symbole_devise;
@@ -26,19 +32,19 @@ public class Devise {
         this.id_devise = id_devise;
     }
 
-    public String getNom_devise() {
+    public TopicA getNom_devise() {
         return nom_devise;
     }
 
-    public void setNom_devise(String nom_devise) {
+    public void setNom_devise(TopicA nom_devise) {
         this.nom_devise = nom_devise;
     }
 
-    public Topic getSymbole_devise() {
+    public TopicB getSymbole_devise() {
         return symbole_devise;
     }
 
-    public void setSymbole_devise(Topic symbole_devise) {
+    public void setSymbole_devise(TopicB symbole_devise) {
         this.symbole_devise = symbole_devise;
     }
 

@@ -1,21 +1,24 @@
 package org.example.Model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Transactions {
     private  int id_transaction ;
+    private int id_devise;
     private int id_compte ;
     private float montant ;
     private String type_transaction;
-    private Timestamp date_transaction;
+    private Date date_transaction;
 
-    public Transactions(int id_transaction, int id_compte, float montant, String type_transaction, Timestamp date_transaction) {
+    public Transactions(int id_transaction, int id_devise, int id_compte, float montant, String type_transaction, String date_transaction) {
         this.id_transaction = id_transaction;
+        this.id_devise = id_devise;
         this.id_compte = id_compte;
         this.montant = montant;
         this.type_transaction = type_transaction;
-        this.date_transaction = date_transaction;
+        this.date_transaction = Date.valueOf(date_transaction);
     }
 
     public int getId_transaction() {
@@ -28,6 +31,14 @@ public class Transactions {
 
     public int getId_compte() {
         return id_compte;
+    }
+
+    public int getId_devise() {
+        return id_devise;
+    }
+
+    public void setId_devise(int id_devise) {
+        this.id_devise = id_devise;
     }
 
     public void setId_compte(int id_compte) {
@@ -50,11 +61,11 @@ public class Transactions {
         this.type_transaction = type_transaction;
     }
 
-    public Timestamp getDate_transaction() {
+    public Date getDate_transaction() {
         return date_transaction;
     }
 
-    public void setDate_transaction(Timestamp date_transaction) {
+    public void setDate_transaction(Date date_transaction) {
         this.date_transaction = date_transaction;
     }
 
@@ -75,6 +86,7 @@ public class Transactions {
     public String toString() {
         return "Transactions{" +
                 "id_transaction=" + id_transaction +
+                "id_devise=" + id_devise +
                 ", id_compte=" + id_compte +
                 ", montant=" + montant +
                 ", type_transaction='" + type_transaction + '\'' +
